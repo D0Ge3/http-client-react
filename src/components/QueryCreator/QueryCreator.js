@@ -10,7 +10,7 @@ export const QueryCreator = () => {
         <option value="GET" selected>
           GET
         </option>
-        <option value="POST">POST</option>
+        <option value="POST">POST </option>
         <option value="DELETE">DELETE</option>
         <option value="PUT">PUT</option>
         <option value="PATCH">PATCH</option>
