@@ -1,12 +1,12 @@
 import s from './App.module.css'
 import { History } from '../History/History'
-import { QueryCreator } from '../QueryCreator/QueryCreator'
+import { Request } from '../Request/Request'
 
 export const App = () => {
   return (
     <div className={s.layout}>
       <History />
-      <QueryCreator />
+      <Request />
     </div>
   )
 }

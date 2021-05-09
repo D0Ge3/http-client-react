@@ -1,0 +1,20 @@
+.url {
+  height: 40px;
+  box-sizing: border-box;
+  padding: 10px;
+  width: 100%;
+  outline: none;
+  background: #DCDCDC;
+  border: 1px solid #909090;
+  border-left: 0px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.url:focus {
+  background: rgba(220, 220, 220, 0.1);
+}
+
+.url:hover {
+  background: rgba(220, 220, 220, 0.5);
+}

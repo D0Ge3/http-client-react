@@ -1,0 +1,12 @@
+.tabPanel {
+  display: flex;
+}
+
+.tab {
+  cursor: pointer;
+  padding: 10px;
+  user-select: none;
+}
+.tab_active {
+  border-bottom: 2px solid #007fff;
+}

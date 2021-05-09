@@ -1,0 +1,28 @@
+.select {
+
+  cursor: pointer;
+  height: 40px;
+  box-sizing: border-box;
+  background: #DCDCDC;
+  border: 1px solid #909090;
+  padding: 0 10px;
+  outline: none;
+  appearance: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.selectWrapper {
+  position: relative;
+}
+.selectWrapper::after {
+  content: "▼";
+  font-size: 1rem;
+  top: 11px;
+  right: 7px;
+  position: absolute;
+}
+
+.select:hover {
+  background: rgba(220, 220, 220, 0.5);
+}
