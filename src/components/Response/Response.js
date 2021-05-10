@@ -1,4 +1,4 @@
-import s from './Response.module.css'
+import s from './Response.module.scss'
 import get from 'lodash/get'
 import JSONInput from 'react-json-editor-ajrm'
 

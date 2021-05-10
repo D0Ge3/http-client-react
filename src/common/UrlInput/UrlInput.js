@@ -1,4 +1,4 @@
-import s from './UrlInput.module.css'
+import s from './UrlInput.module.scss'
 
 export const UrlInput = ({ value, onChange, name, placeholder, ...rest }) => (
   <input

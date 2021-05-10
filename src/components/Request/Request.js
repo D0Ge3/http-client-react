@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import axios from 'axios'
-import s from './Request.module.css'
+import s from './Request.module.scss'
 import { Select } from '../../common/Select/Select'
 import { Button } from '../../common/Button/Button'
 import { UrlInput } from '../../common/UrlInput/UrlInput'
 import { Response } from '../Response/Response'
 import { TabsPanel } from '../../common/TabsPanel/TabsPanel'
 
-export const Request = () => {
+export const Request = ({ setResponse }) => {
   const [url, setUrl] = useState('')
   const [method, setMethod] = useState('GET')
   const [headers, setHeaders] = useState()
-  const [response, setResponse] = useState()
+
   const [tab, setTab] = useState(0)
   const sendRequest = async () => {
     setResponse(null)
@@ -34,7 +34,7 @@ export const Request = () => {
     }
   }
   return (
-    <div className={s.wrap}>
+    <>
       <div className={s.mainParams}>
         <div className={s.urlWrap}>
           <Select
@@ -62,6 +62,6 @@ export const Request = () => {
       </div>
 
       {/* <Response response={response} /> */}
-    </div>
+    </>
   )
 }

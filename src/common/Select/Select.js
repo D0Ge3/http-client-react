@@ -1,4 +1,4 @@
-import s from './Select.module.css'
+import s from './Select.module.scss'
 
 export const Select = ({ options, name, onChange, value, ...rest }) => (
   <div className={s.selectWrapper}>

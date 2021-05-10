@@ -1,5 +1,5 @@
 import * as cs from 'classnames'
-import s from './TabsPanel.module.css'
+import s from './TabsPanel.module.scss'
 
 export const TabsPanel = ({ activeTab, tabs, changeTab }) => {
   const tabStyle = (isActive) =>
