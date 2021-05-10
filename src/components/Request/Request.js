@@ -4,33 +4,61 @@ import s from './Request.module.scss'
 import { Select } from '../../common/Select/Select'
 import { Button } from '../../common/Button/Button'
 import { UrlInput } from '../../common/UrlInput/UrlInput'
-import { Response } from '../Response/Response'
 import { TabsPanel } from '../../common/TabsPanel/TabsPanel'
+import { Headers } from '../Headers/Headers'
+
+import { JsonEditor as Editor } from 'jsoneditor-react'
+import 'jsoneditor-react/es/editor.min.css'
 
 export const Request = ({ setResponse }) => {
   const [url, setUrl] = useState('')
   const [method, setMethod] = useState('GET')
-  const [headers, setHeaders] = useState()
+  const [headers, setHeaders] = useState([])
+  const [body, setBody] = useState()
+
+  const makeHeaders = (headersArr) => {
+    let headersObj = {}
+    headersArr.forEach((header) => (headersObj[header.name] = header.value))
+    return headersObj
+  }
 
   const [tab, setTab] = useState(0)
   const sendRequest = async () => {
     setResponse(null)
-    // axios.header
-    console.log(axios.defaults.headers)
-
-    const res = await axios[method.toLowerCase()](url)
-    console.log(res)
-    setResponse(res)
+    if (method === 'GET') {
+      const res = await axios.get(url, { headers: makeHeaders(headers) })
+      setResponse(res)
+    } else {
+      const res = await axios[method.toLowerCase()](url, body, {
+        headers: makeHeaders(headers),
+      })
+      setResponse(res)
+    }
   }
 
   const renderTab = () => {
     switch (tab) {
       case 0:
-        return <p>0</p>
+        return (
+          <div className={s.tabWrap}>
+            <Headers
+              headers={headers}
+              setHeaders={(headers) => setHeaders(headers)}
+            />
+          </div>
+        )
       case 1:
-        return <p>1</p>
+        return (
+          <div className={s.tabWrap}>
+            <Editor
+              mode="code"
+              value={body}
+              onChange={(data) => setBody(data)}
+            />
+          </div>
+        )
       default:
-        return <p>def</p>
+        return <></>
     }
   }
   return (
@@ -54,14 +82,12 @@ export const Request = ({ setResponse }) => {
       </div>
       <div className={s.tabs}>
         <TabsPanel
-          tabs={['Headers', 'Body']}
+          tabs={method === 'GET' ? ['Headers'] : ['Headers', 'Body']}
           activeTab={tab}
           changeTab={(ind) => setTab(ind)}
         />
         {renderTab(tab)}
       </div>
-
-      {/* <Response response={response} /> */}
     </>
   )
 }
