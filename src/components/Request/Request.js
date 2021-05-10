@@ -6,35 +6,44 @@ import { Button } from '../../common/Button/Button'
 import { UrlInput } from '../../common/UrlInput/UrlInput'
 import { TabsPanel } from '../../common/TabsPanel/TabsPanel'
 import { Headers } from '../Headers/Headers'
-
+import { useSelector, useDispatch } from 'react-redux'
 import { JsonEditor as Editor } from 'jsoneditor-react'
 import 'jsoneditor-react/es/editor.min.css'
+import { setUrl, setMethod, setReqHeaders, setBody } from '../../redux/actions/currentActions'
+import { sendRequest } from '../../redux/actions/commonActions'
 
-export const Request = ({ setResponse }) => {
-  const [url, setUrl] = useState('')
-  const [method, setMethod] = useState('GET')
-  const [headers, setHeaders] = useState([])
-  const [body, setBody] = useState('')
+export const Request = () => {
+  const dispatch = useDispatch()
+  const { url, method, headers, body } = useSelector((state) => state.current.request)
+  
+  // const [body, setBody] = useState('')
 
-  const makeHeaders = (headersArr) => {
-    let headersObj = {}
-    headersArr.forEach((header) => (headersObj[header.name] = header.value))
-    return headersObj
+  // const makeHeaders = (headersArr) => {
+  //   let headersObj = {}
+  //   headersArr.forEach((header) => (headersObj[header.name] = header.value))
+  //   return headersObj
+  // }
+
+  const changeMethod = (e) => {
+    if (e.target.value === 'GET' && tab === 1) {
+      setTab(0)
+    }
+    dispatch(setMethod(e.target.value))
   }
 
   const [tab, setTab] = useState(0)
-  const sendRequest = async () => {
-    setResponse(null)
-    if (method === 'GET') {
-      const res = await axios.get(url, { headers: makeHeaders(headers) })
-      setResponse(res)
-    } else {
-      const res = await axios[method.toLowerCase()](url, body, {
-        headers: makeHeaders(headers),
-      })
-      setResponse(res)
-    }
-  }
+  // const sendRequest = async () => {
+  //   setResponse(null)
+  //   if (method === 'GET') {
+  //     const res = await axios.get(url, { headers: makeHeaders(headers) })
+  //     setResponse(res)
+  //   } else {
+  //     const res = await axios[method.toLowerCase()](url, body, {
+  //       headers: makeHeaders(headers),
+  //     })
+  //     setResponse(res)
+  //   }
+  // }
 
   const renderTab = () => {
     switch (tab) {
@@ -43,7 +52,7 @@ export const Request = ({ setResponse }) => {
           <div className={s.tabWrap}>
             <Headers
               headers={headers}
-              setHeaders={(headers) => setHeaders(headers)}
+              setHeaders={(headers) => dispatch(setReqHeaders(headers))}
             />
           </div>
         )
@@ -53,12 +62,12 @@ export const Request = ({ setResponse }) => {
             <Editor
               mode="code"
               value={body}
-              onChange={(data) => setBody(data)}
+              onChange={(data) => dispatch(setBody(data))}
             />
           </div>
         )
       default:
-        return <></>
+        break
     }
   }
   return (
@@ -69,16 +78,16 @@ export const Request = ({ setResponse }) => {
             name="method"
             options={['GET', 'POST', 'DELETE', 'PUT', 'PATCH']}
             value={method}
-            onChange={(e) => setMethod(e.target.value)}
+            onChange={changeMethod}
           />
           <UrlInput
             name="url"
             placeholder="Type a url..."
             value={url}
-            onChange={(e) => setUrl(e.target.value)}
+            onChange={(e) => dispatch(setUrl(e.target.value))}
           />
         </div>
-        <Button onClick={sendRequest}>Send</Button>
+        <Button onClick={() => dispatch(sendRequest())}>Send</Button>
       </div>
       <div className={s.tabs}>
         <TabsPanel

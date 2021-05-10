@@ -6,15 +6,14 @@ import { Response } from '../Response/Response'
 import { Scrollbars } from 'react-custom-scrollbars'
 
 export const App = () => {
-  const [response, setResponse] = useState()
   return (
     <div className={s.layout}>
       <History />
       <div className={s.mainWrap}>
         <Scrollbars>
           <div className={s.main}>
-            <Request setResponse={(res) => setResponse(res)} />
-            <Response response={response} />
+            <Request />
+            <Response />
           </div>
         </Scrollbars>
       </div>
