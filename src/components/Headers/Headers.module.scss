@@ -1,0 +1,30 @@
+.table {
+  border-collapse: collapse;
+  thead{
+    font-weight: 500;
+    th {
+      text-align: left;
+      border: 1px solid #DCDCDC;
+      padding: 3px 10px;
+    }
+  }
+  td {
+    border: 1px solid #DCDCDC;
+    padding: 2px 4px;
+    
+  }
+}
+
+.input {
+  background: #F5F5F5;
+  border: 0px; 
+  outline: none;
+  &:focus {
+    background: #fff;
+    outline: 1px solid #DCDCDC; 
+  }
+}
+
+.close {
+  cursor: pointer;
+}

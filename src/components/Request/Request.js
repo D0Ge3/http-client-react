@@ -14,7 +14,7 @@ export const Request = ({ setResponse }) => {
   const [url, setUrl] = useState('')
   const [method, setMethod] = useState('GET')
   const [headers, setHeaders] = useState([])
-  const [body, setBody] = useState()
+  const [body, setBody] = useState('')
 
   const makeHeaders = (headersArr) => {
     let headersObj = {}

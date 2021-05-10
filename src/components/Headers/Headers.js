@@ -1,6 +1,9 @@
 import { nanoid } from 'nanoid'
 
 import s from './Headers.module.scss'
+import { Scrollbars } from 'react-custom-scrollbars'
+import { CloseIcon } from '../../common/icons/CloseIcon'
+import { AddIcon } from '../../common/icons/AddIcon'
 
 export const Headers = ({ headers, setHeaders, readOnly }) => {
   const addHeader = () =>
@@ -17,29 +20,48 @@ export const Headers = ({ headers, setHeaders, readOnly }) => {
     ])
   }
   return (
-    <div>
-      {headers.map((header) => (
-        <div key={header.id}>
-          <input
-            type="text"
-            name="name"
-            value={header.name}
-            onChange={(e) => changeHeader(header.id, e)}
-            disabled={readOnly}
-          />
-          <input
-            type="text"
-            name="value"
-            disabled={readOnly}
-            value={header.value}
-            onChange={(e) => changeHeader(header.id, e)}
-          />
-          {!readOnly && (
-            <button onClick={() => deleteHeader(header.id)}>x</button>
-          )}
-        </div>
-      ))}
-      {!readOnly && <button onClick={addHeader}>+</button>}
-    </div>
+    <Scrollbars>
+      <table className={s.table}>
+        {headers.length > 0 && (
+          <thead>
+            <th>Key</th>
+            <th>Value</th>
+            {!readOnly && <th></th>}
+          </thead>
+        )}
+        <tbody>
+          {headers.map((header) => (
+            <tr key={header.id}>
+              <td>
+                <input
+                  className={s.input}
+                  type="text"
+                  name="name"
+                  value={header.name}
+                  onChange={(e) => changeHeader(header.id, e)}
+                  disabled={readOnly}
+                />
+              </td>
+              <td>
+                <input
+                  className={s.input}
+                  type="text"
+                  name="value"
+                  disabled={readOnly}
+                  value={header.value}
+                  onChange={(e) => changeHeader(header.id, e)}
+                />
+              </td>
+              {!readOnly && (
+                <td className={s.close} onClick={() => deleteHeader(header.id)}>
+                  <CloseIcon />
+                </td>
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {!readOnly && <AddIcon onClick={addHeader} />}
+    </Scrollbars>
   )
 }
