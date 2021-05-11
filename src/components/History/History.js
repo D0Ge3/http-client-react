@@ -28,15 +28,19 @@ export const History = () => {
     <div className={s.history}>
       <h3>History</h3>
       <Scrollbars style={{ height: 'calc(100vh - 65px)' }}>
-        {history.map((req) => (
+        {history.map((item) => (
           <div
-            key={req.id}
+            key={item.id}
             className={s.historyItem}
-            onClick={() => dispatch(selectRequest(req.id))}
+            onClick={() => dispatch(selectRequest(item.id))}
           >
-            <span className={methodStyle(req.method)}>{req.method}</span>
-            <span className={s.url} title={req.url}>
-              {req.url.length > 60 ? `${req.url.slice(0, 60)}...` : req.url}
+            <span className={methodStyle(item.request.method)}>
+              {item.request.method}
+            </span>
+            <span className={s.url} title={item.request.url}>
+              {item.request.url.length > 60
+                ? `${item.request.url.slice(0, 60)}...`
+                : item.request.url}
             </span>
           </div>
         ))}

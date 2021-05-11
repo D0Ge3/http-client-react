@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { nanoid } from 'nanoid'
 import * as cs from 'classnames'
 
@@ -11,9 +11,11 @@ import { useSelector } from 'react-redux'
 import s from './Response.module.scss'
 
 export const Response = () => {
+  const jsonEditorRef = useRef()
   const { status, data, headers } = useSelector(
     (state) => state.current.response
   )
+
   const isLoading = useSelector((state) => state.current.isLoading)
   const [tab, setTab] = useState(0)
   const [headersArr, setHeadersArr] = useState([])
@@ -31,12 +33,23 @@ export const Response = () => {
     }
     // eslint-disable-next-line
   }, [headers])
+  useEffect(() => {
+    const editor =
+      jsonEditorRef && jsonEditorRef.current && jsonEditorRef.current.jsonEditor
+    if (editor && data) {
+      editor.update(data)
+    }
+  }, [jsonEditorRef, data])
   const renderTab = () => {
     switch (tab) {
       case 0:
         return (
           <div className={s.tabWrap}>
-            {data ? <Editor mode="preview" value={data} /> : <></>}
+            {data ? (
+              <Editor ref={jsonEditorRef} mode="preview" value={data} />
+            ) : (
+              <></>
+            )}
           </div>
         )
       case 1:
@@ -49,7 +62,7 @@ export const Response = () => {
         return <></>
     }
   }
-
+  console.log('render')
   const statusStyle = (code) =>
     cs(s.status, {
       [s.status_good]: code >= 200 && code <= 299,

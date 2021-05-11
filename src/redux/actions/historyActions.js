@@ -1,12 +1,12 @@
 import { createAction } from '@reduxjs/toolkit'
 import { nanoid } from 'nanoid'
-import { setRequest } from './currentActions'
+import { setQuery } from './currentActions'
 
 export const setHistory = createAction('SET_HISTORY')
 export const pushHistoryInState = createAction('PUSH_HISTORY')
 
-export const pushHistory = (request) => async (dispatch) => {
-  const historyItem = { id: nanoid(), ...request }
+export const pushHistory = (request, response) => async (dispatch) => {
+  const historyItem = { id: nanoid(), request, response }
   dispatch(pushHistoryInState(historyItem))
   try {
     const localHistory = localStorage.getItem('history')
@@ -33,5 +33,5 @@ export const loadHistoryFromStorage = () => async (dispatch) => {
 
 export const selectRequest = (id) => async (dispatch, getState) => {
   const req = getState().history.filter((req) => req.id === id)[0]
-  dispatch(setRequest(req))
+  dispatch(setQuery(req))
 }

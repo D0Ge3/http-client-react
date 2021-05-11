@@ -46,7 +46,8 @@ export const CurrentReducer = createReducer(initialState, {
     state.response.headers = action.payload
   },
 
-  [actions.setRequest]: (state, action) => {
-    state.request = action.payload
+  [actions.setQuery]: (state, action) => {
+    state.request = action.payload.request
+    state.response = action.payload.response
   },
 })
