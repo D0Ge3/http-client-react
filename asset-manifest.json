@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/http-client-react/static/css/main.d4985d15.chunk.css",
+    "main.js": "/http-client-react/static/js/main.b062fa6b.chunk.js",
+    "main.js.map": "/http-client-react/static/js/main.b062fa6b.chunk.js.map",
+    "runtime-main.js": "/http-client-react/static/js/runtime-main.4fff089a.js",
+    "runtime-main.js.map": "/http-client-react/static/js/runtime-main.4fff089a.js.map",
+    "static/css/2.02953829.chunk.css": "/http-client-react/static/css/2.02953829.chunk.css",
+    "static/js/2.04b18ac8.chunk.js": "/http-client-react/static/js/2.04b18ac8.chunk.js",
+    "static/js/2.04b18ac8.chunk.js.map": "/http-client-react/static/js/2.04b18ac8.chunk.js.map",
+    "static/js/3.081e76ba.chunk.js": "/http-client-react/static/js/3.081e76ba.chunk.js",
+    "static/js/3.081e76ba.chunk.js.map": "/http-client-react/static/js/3.081e76ba.chunk.js.map",
+    "index.html": "/http-client-react/index.html",
+    "static/css/2.02953829.chunk.css.map": "/http-client-react/static/css/2.02953829.chunk.css.map",
+    "static/css/main.d4985d15.chunk.css.map": "/http-client-react/static/css/main.d4985d15.chunk.css.map",
+    "static/js/2.04b18ac8.chunk.js.LICENSE.txt": "/http-client-react/static/js/2.04b18ac8.chunk.js.LICENSE.txt",
+    "static/media/jsoneditor.css": "/http-client-react/static/media/jsoneditor-icons.15f2789d.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4fff089a.js",
+    "static/css/2.02953829.chunk.css",
+    "static/js/2.04b18ac8.chunk.js",
+    "static/css/main.d4985d15.chunk.css",
+    "static/js/main.b062fa6b.chunk.js"
+  ]
+}
