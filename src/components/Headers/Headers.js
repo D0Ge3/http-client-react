@@ -24,9 +24,11 @@ export const Headers = ({ headers, setHeaders, readOnly }) => {
       <table className={s.table}>
         {headers.length > 0 && (
           <thead>
-            <th>Key</th>
-            <th>Value</th>
-            {!readOnly && <th></th>}
+            <tr>
+              <td>Key</td>
+              <td>Value</td>
+              {!readOnly && <td></td>}
+            </tr>
           </thead>
         )}
         <tbody>

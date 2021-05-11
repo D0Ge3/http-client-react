@@ -1,5 +1,6 @@
 import { createAction } from '@reduxjs/toolkit'
 import { nanoid } from 'nanoid'
+import { setRequest } from './currentActions'
 
 export const setHistory = createAction('SET_HISTORY')
 export const pushHistoryInState = createAction('PUSH_HISTORY')
@@ -28,4 +29,9 @@ export const loadHistoryFromStorage = () => async (dispatch) => {
   if (history) {
     dispatch(setHistory(JSON.parse(history)))
   }
+}
+
+export const selectRequest = (id) => async (dispatch, getState) => {
+  const req = getState().history.filter((req) => req.id === id)[0]
+  dispatch(setRequest(req))
 }

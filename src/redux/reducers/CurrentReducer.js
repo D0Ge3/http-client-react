@@ -45,4 +45,8 @@ export const CurrentReducer = createReducer(initialState, {
   [actions.setResHeaders]: (state, action) => {
     state.response.headers = action.payload
   },
+
+  [actions.setRequest]: (state, action) => {
+    state.request = action.payload
+  },
 })
