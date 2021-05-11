@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { JsonEditor as Editor } from 'jsoneditor-react'
 import 'jsoneditor-react/es/editor.min.css'
-
+import * as cs from 'classnames'
 import { Select } from '../../common/Select/Select'
 import { Button } from '../../common/Button/Button'
 import { UrlInput } from '../../common/UrlInput/UrlInput'
@@ -34,6 +34,7 @@ export const Request = () => {
   }
 
   const [tab, setTab] = useState(0)
+  const [error, setError] = useState(false)
 
   const renderTab = () => {
     switch (tab) {
@@ -60,10 +61,25 @@ export const Request = () => {
         break
     }
   }
+  const onSubmit = () => {
+    // eslint-disable-next-line
+    const regexp = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/)
+    if (!regexp.test(url)) {
+      setError(true)
+    } else {
+      dispatch(sendRequest())
+    }
+  }
+
+  const onChangeUrl = (e) => {
+    error && setError(false)
+    dispatch(setUrl(e.target.value))
+  }
+
   return (
     <>
       <div className={s.mainParams}>
-        <div className={s.urlWrap}>
+        <div className={cs(s.urlWrap, { [s.urlWrap_error]: error })}>
           <Select
             name="method"
             options={['GET', 'POST', 'DELETE', 'PUT', 'PATCH']}
@@ -74,10 +90,10 @@ export const Request = () => {
             name="url"
             placeholder="Type a url..."
             value={url}
-            onChange={(e) => dispatch(setUrl(e.target.value))}
+            onChange={onChangeUrl}
           />
         </div>
-        <Button disabled={isLoading} onClick={() => dispatch(sendRequest())}>
+        <Button disabled={isLoading} onClick={onSubmit}>
           Send
         </Button>
       </div>
