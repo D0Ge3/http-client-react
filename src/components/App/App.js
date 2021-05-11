@@ -8,7 +8,7 @@ import s from './App.module.scss'
 export const App = () => {
   return (
     <div className={s.layout}>
-      <History />
+      <History className={s.history} />
       <div className={s.mainWrap}>
         <Scrollbars>
           <div className={s.main}>

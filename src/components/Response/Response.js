@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import '../../utils/nanoid-polyfill'
 import { nanoid } from 'nanoid'
 import * as cs from 'classnames'
 
@@ -62,7 +63,7 @@ export const Response = () => {
         return <></>
     }
   }
-  console.log('render')
+
   const statusStyle = (code) =>
     cs(s.status, {
       [s.status_good]: code >= 200 && code <= 299,

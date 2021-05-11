@@ -2,10 +2,31 @@
   display: grid;
   grid-template-columns: 300px 1fr;
   grid-template-rows: 100vh;
+
+  display: -ms-grid;
+  -ms-grid-columns: 300px 1fr;
+  -ms-grid-rows: 100vh;
+}
+
+.history {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 1;
+  grid-row-end: 1;
+
+  -ms-grid-column: 1;
+
+  -ms-grid-row: 1;
 }
 
 .mainWrap {
   background: #F5F5F5;
+
+  grid-row-start: 1;
+  grid-column-start: 2;
+
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
 }
 
 .main {

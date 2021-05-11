@@ -1,4 +1,5 @@
 import { createAction } from '@reduxjs/toolkit'
+import '../../utils/nanoid-polyfill'
 import { nanoid } from 'nanoid'
 import { setQuery } from './currentActions'
 

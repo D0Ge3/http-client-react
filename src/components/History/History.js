@@ -10,7 +10,7 @@ import {
 
 import s from './History.module.scss'
 
-export const History = () => {
+export const History = ({ className }) => {
   const dispatch = useDispatch()
   const history = useSelector((state) => state.history)
   useEffect(() => {
@@ -25,7 +25,7 @@ export const History = () => {
       [s.method_yellow]: method === 'POST',
     })
   return (
-    <div className={s.history}>
+    <div className={cs(s.history, { [className]: className })}>
       <h3>History</h3>
       <Scrollbars style={{ height: 'calc(100vh - 65px)' }}>
         {history.map((item) => (

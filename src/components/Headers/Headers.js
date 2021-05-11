@@ -1,3 +1,4 @@
+import '../../utils/nanoid-polyfill'
 import { nanoid } from 'nanoid'
 
 import s from './Headers.module.scss'
