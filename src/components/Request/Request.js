@@ -25,7 +25,7 @@ export const Request = () => {
   const { url, method, headers, body } = useSelector(
     (state) => state.current.request
   )
-
+  const [tab, setTab] = useState(0)
   const changeMethod = (e) => {
     if (e.target.value === 'GET' && tab === 1) {
       setTab(0)
@@ -33,7 +33,6 @@ export const Request = () => {
     dispatch(setMethod(e.target.value))
   }
 
-  const [tab, setTab] = useState(0)
   const [error, setError] = useState(false)
 
   const renderTab = () => {
