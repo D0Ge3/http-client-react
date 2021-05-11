@@ -8,11 +8,14 @@ import {
   setIsLoading,
 } from './currentActions'
 
+import { pushHistory } from './historyActions'
+
 export const sendRequest = () => async (dispatch, getState) => {
   const { method, headers, url, body } = getState().current.request
   // setResponse(null)
   try {
     dispatch(setIsLoading(true))
+    dispatch(pushHistory({ method, headers, url, body }))
     if (method === 'GET') {
       const res = await axios.get(url, { headers: makeHeaders(headers) })
       dispatch(setResHeaders(res.headers))

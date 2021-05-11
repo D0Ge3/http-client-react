@@ -1,15 +1,14 @@
 import { createReducer } from '@reduxjs/toolkit'
-import * as actions from '../actions/currentActions'
+import * as actions from '../actions/historyActions'
 
-const initialState = [
-  
-]
+const initialState = []
 
 export const HistoryReducer = createReducer(initialState, {
-  // [actions.setIsLoading]: (state, action) => {
-  //   state.isLoading = action.payload
-  // },
-  // [actions.setTickets]: (state, action) => {
-  //   state.tickets = action.payload
-  // },
+  [actions.pushHistoryInState]: (state, action) => {
+    const newState = [action.payload, ...state]
+    return newState
+  },
+  [actions.setHistory]: (state, action) => {
+    return action.payload
+  },
 })

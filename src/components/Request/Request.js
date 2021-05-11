@@ -1,28 +1,30 @@
 import { useState } from 'react'
-import axios from 'axios'
-import s from './Request.module.scss'
+import { useSelector, useDispatch } from 'react-redux'
+import { JsonEditor as Editor } from 'jsoneditor-react'
+import 'jsoneditor-react/es/editor.min.css'
+
 import { Select } from '../../common/Select/Select'
 import { Button } from '../../common/Button/Button'
 import { UrlInput } from '../../common/UrlInput/UrlInput'
 import { TabsPanel } from '../../common/TabsPanel/TabsPanel'
 import { Headers } from '../Headers/Headers'
-import { useSelector, useDispatch } from 'react-redux'
-import { JsonEditor as Editor } from 'jsoneditor-react'
-import 'jsoneditor-react/es/editor.min.css'
-import { setUrl, setMethod, setReqHeaders, setBody } from '../../redux/actions/currentActions'
+
+import {
+  setUrl,
+  setMethod,
+  setReqHeaders,
+  setBody,
+} from '../../redux/actions/currentActions'
 import { sendRequest } from '../../redux/actions/commonActions'
+
+import s from './Request.module.scss'
 
 export const Request = () => {
   const dispatch = useDispatch()
-  const { url, method, headers, body } = useSelector((state) => state.current.request)
-  
-  // const [body, setBody] = useState('')
-
-  // const makeHeaders = (headersArr) => {
-  //   let headersObj = {}
-  //   headersArr.forEach((header) => (headersObj[header.name] = header.value))
-  //   return headersObj
-  // }
+  const isLoading = useSelector((state) => state.current.isLoading)
+  const { url, method, headers, body } = useSelector(
+    (state) => state.current.request
+  )
 
   const changeMethod = (e) => {
     if (e.target.value === 'GET' && tab === 1) {
@@ -32,18 +34,6 @@ export const Request = () => {
   }
 
   const [tab, setTab] = useState(0)
-  // const sendRequest = async () => {
-  //   setResponse(null)
-  //   if (method === 'GET') {
-  //     const res = await axios.get(url, { headers: makeHeaders(headers) })
-  //     setResponse(res)
-  //   } else {
-  //     const res = await axios[method.toLowerCase()](url, body, {
-  //       headers: makeHeaders(headers),
-  //     })
-  //     setResponse(res)
-  //   }
-  // }
 
   const renderTab = () => {
     switch (tab) {
@@ -87,7 +77,9 @@ export const Request = () => {
             onChange={(e) => dispatch(setUrl(e.target.value))}
           />
         </div>
-        <Button onClick={() => dispatch(sendRequest())}>Send</Button>
+        <Button disabled={isLoading} onClick={() => dispatch(sendRequest())}>
+          Send
+        </Button>
       </div>
       <div className={s.tabs}>
         <TabsPanel

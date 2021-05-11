@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import s from './App.module.scss'
+import { Scrollbars } from 'react-custom-scrollbars'
 import { History } from '../History/History'
 import { Request } from '../Request/Request'
 import { Response } from '../Response/Response'
-import { Scrollbars } from 'react-custom-scrollbars'
+
+import s from './App.module.scss'
 
 export const App = () => {
   return (

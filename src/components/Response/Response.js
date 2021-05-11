@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
 import { nanoid } from 'nanoid'
 import * as cs from 'classnames'
-import s from './Response.module.scss'
-import get from 'lodash/get'
+
+import { JsonEditor as Editor } from 'jsoneditor-react'
+import 'jsoneditor-react/es/editor.min.css'
 import { TabsPanel } from '../../common/TabsPanel/TabsPanel'
 import { Headers } from '../Headers/Headers'
 import { useSelector } from 'react-redux'
-import { JsonEditor as Editor } from 'jsoneditor-react'
-import 'jsoneditor-react/es/editor.min.css'
+
+import s from './Response.module.scss'
 
 export const Response = () => {
   const { status, data, headers } = useSelector(
