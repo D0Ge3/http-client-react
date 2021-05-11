@@ -1,11 +1,12 @@
 import * as cs from 'classnames'
 import s from './TabsPanel.module.scss'
 
-export const TabsPanel = ({ activeTab, tabs, changeTab }) => {
+export const TabsPanel = ({ activeTab, tabs, changeTab, className }) => {
   const tabStyle = (isActive) =>
     cs({
       [s.tab]: true,
       [s.tab_active]: isActive,
+      [className]: className,
     })
   return (
     <div className={s.tabPanel}>

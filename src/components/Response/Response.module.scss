@@ -6,3 +6,16 @@
   margin-top: 20px;
   height: 420px;
 }
+
+.tabPanel {
+  margin-bottom: 15px;
+}
+
+.status {
+  &_good {
+    color: green;
+  }
+  &_bad {
+    color: red;
+  }
+}

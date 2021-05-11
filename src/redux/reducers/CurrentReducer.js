@@ -11,7 +11,10 @@ const initialState = {
   response: {
     headers: [],
     data: null,
-    status: null,
+    status: {
+      code: null,
+      text: '',
+    },
   },
   isLoading: false,
 }
