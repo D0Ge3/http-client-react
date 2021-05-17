@@ -1,4 +1,4 @@
-# Patient portal
+# React HTTP client
 React HTTP client
 (Тестовое задание)
 
@@ -7,7 +7,6 @@ React HTTP client
 - React
 - Redux + redux-thunk
 - Redux Toolkit
-- React-router
 - Sass modules
 
 ## Structure
